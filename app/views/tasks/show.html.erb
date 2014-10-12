@@ -7,12 +7,12 @@
 
 <p>
   <strong>Start at:</strong>
-  <%= @task.start_at %>
+  <%= @task.start_at.to_s(:db) %>
 </p>
 
 <p>
   <strong>End at:</strong>
-  <%= @task.end_at %>
+  <%= @task.end_at.to_s(:db) %>
 </p>
 
 <p>
