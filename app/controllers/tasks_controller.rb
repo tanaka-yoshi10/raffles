@@ -61,6 +61,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def report_by_day
+    @tasks = Task.by_start_date(Time.new(2014,10,9))
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

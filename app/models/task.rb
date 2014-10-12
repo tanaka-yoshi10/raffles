@@ -6,6 +6,6 @@ class Task < ActiveRecord::Base
   end
 
   def self.by_start_date(date)
-    where("start_at LIKE ?", "#{date}%").order(:start_at)
+    where("? <= start_at and start_at <= ?", date.beginning_of_day, date.end_of_day)
   end
 end
