@@ -62,7 +62,7 @@ class TasksController < ApplicationController
   end
 
   def report_by_day
-    @tasks = Task.by_start_date(Time.new(2014,10,9))
+    @tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
     render :index
   end
 
