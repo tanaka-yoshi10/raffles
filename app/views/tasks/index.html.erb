@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Date</th>
       <th>Start at</th>
       <th>End at</th>
       <th>time</th>
@@ -16,8 +17,9 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task %></td>
-        <td><%= task.start_at.to_s(:db) %></td>
-        <td><%= task.end_at.to_s(:db) %></td>
+        <td><%= task.start_at.to_s(:date) %></td>
+        <td><%= task.start_at.to_s(:time) %></td>
+        <td><%= task.end_at.to_s(:time) %></td>
         <td><%= task.time_second / 60 %></td>
         <td><%= link_to task.project.name, task.project %></td>
         <td>
