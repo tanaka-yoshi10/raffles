@@ -85,15 +85,7 @@ class TasksController < ApplicationController
       return
     end
 
- 
-    @report = {}
-    @tasks.each do |task|
-      if @report.has_key? task.project
-        @report[task.project]  += task.time_second
-      else
-        @report[task.project] = task.time_second
-      end
-    end
+    @report = @tasks.inject(Hash.new(0)) {|r, task| r[task.project] += task.time_second; r}
     render :index
   end
 
