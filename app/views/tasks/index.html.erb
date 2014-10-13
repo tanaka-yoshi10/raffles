@@ -35,6 +35,25 @@
   </tbody>
 </table>
 
+<% unless @report.nil? %>
+  <table class="table table-striped table-hover ">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>time</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @report.each do |key, value| %>
+        <tr>
+          <td><%= key.name %></td>
+          <td><%= value / 60 %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <br>
 
 <%= link_to 'New Task', new_task_path %>

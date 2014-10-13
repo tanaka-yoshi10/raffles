@@ -67,6 +67,14 @@ class TasksController < ApplicationController
     else
       @tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
     end
+    @report = {}
+    @tasks.each do |task|
+      if @report.has_key? task.project
+        @report[task.project]  += task.time_second
+      else
+        @report[task.project] = task.time_second
+      end
+    end
     render :index
   end
 
