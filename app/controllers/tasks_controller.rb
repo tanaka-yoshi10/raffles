@@ -70,16 +70,16 @@ class TasksController < ApplicationController
     end
 
     if params[:commit] == "csv"
-      header = ['作業名', '作業時間', 'プロジェクトコード']
+      header = ['日付','開始','終了','作業名', '作業時間', 'プロジェクトコード']
       generated_csv = CSV.generate(row_sep: "\r\n") do |csv|
         csv << header
         @tasks.each do |task|
-          csv << [task.name, task.time_second / 60, task.project.code]
+          csv << [task.start_at.to_s(:date), task.start_at.to_s(:time), task.end_at.to_s(:time), task.name, task.time_second / 60, task.project.code]
         end
       end
 
       send_data generated_csv.encode(Encoding::CP932, invalid: :replace, undef: :replace),
-        filename: 'zaiko.csv',
+        filename: 'tasks.csv',
         type: 'text/csv; charset=shift_jis'
 
       return
