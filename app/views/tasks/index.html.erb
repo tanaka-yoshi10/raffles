@@ -7,7 +7,7 @@
       <th>Date</th>
       <th>Start at</th>
       <th>End at</th>
-      <th>time</th>
+      <th>time(H)</th>
       <th>Project</th>
       <th colspan="3"></th>
     </tr>
@@ -20,7 +20,7 @@
         <td><%= task.start_at.to_s(:date) %></td>
         <td><%= task.start_at.to_s(:time) %></td>
         <td><%= task.end_at.to_s(:time) %></td>
-        <td><%= task.time_second / 60 %></td>
+        <td><%= task.time_hour %></td>
         <td><%= link_to task.project.name, task.project %></td>
         <td>
           <%= link_to 'Edit', edit_task_path(task), :class => 'btn btn-primary btn-xs' %>
@@ -40,7 +40,7 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>time</th>
+        <th>time(H)</th>
       </tr>
     </thead>
 
@@ -48,7 +48,7 @@
       <% @report.each do |key, value| %>
         <tr>
           <td><%= key.name %></td>
-          <td><%= value / 60 %></td>
+          <td><%= value %></td>
         </tr>
       <% end %>
     </tbody>

@@ -85,7 +85,7 @@ class TasksController < ApplicationController
       return
     end
 
-    @report = @tasks.inject(Hash.new(0)) {|r, task| r[task.project] += task.time_second; r}
+    @report = @tasks.inject(Hash.new(0)) {|r, task| r[task.project] += task.time_hour; r}
     render :index
   end
 
