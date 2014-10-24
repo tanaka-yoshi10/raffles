@@ -61,7 +61,6 @@ class TasksController < ApplicationController
     end
   end
 
-  require 'csv'
   def report_by_day
     if params[:day].blank?
       @tasks = Task.by_month(Time.new(params[:year],params[:month]))
@@ -70,14 +69,7 @@ class TasksController < ApplicationController
     end
 
     if params[:commit] == "csv"
-      header = ['日付','開始','終了','作業名', '作業時間', 'プロジェクトコード']
-      generated_csv = CSV.generate(row_sep: "\r\n") do |csv|
-        csv << header
-        @tasks.each do |task|
-          csv << [task.start_at.to_s(:date), task.start_at.to_s(:time), task.end_at.to_s(:time), task.name, task.time_second / 60, task.project.code]
-        end
-      end
-
+      generated_csv = @tasks.to_csv
       send_data generated_csv.encode(Encoding::CP932, invalid: :replace, undef: :replace),
         filename: 'tasks.csv',
         type: 'text/csv; charset=shift_jis'
