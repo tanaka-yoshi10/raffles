@@ -18,11 +18,11 @@ class Task < ActiveRecord::Base
   end
 
   def self.to_csv
-    header = ['日付','開始','終了','作業名', '作業時間', 'プロジェクトコード']
+    header = ['日付','開始','終了','作業名', 'プロジェクトコード', '作業時間']
     CSV.generate(row_sep: "\r\n") do |csv|
       csv << header
       all.each do |task|
-       csv << [task.start_at.to_s(:date), task.start_at.to_s(:time), task.end_at.to_s(:time), task.name, task.time_second / 60, task.project.code]
+       csv << [task.start_at.to_s(:date), task.start_at.to_s(:time), task.end_at.to_s(:time), task.name, task.project.code, task.time_second / 60 ]
       end
     end
   end
