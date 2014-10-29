@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.timepicker.js
 //= require readable/loader
 
-
+$(function() {
+  $('#tp1').timepicker({timeFormat: 'G:i'});
+});
