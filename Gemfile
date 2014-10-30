@@ -45,4 +45,4 @@ gem 'therubyracer'
 
 gem 'jquery-turbolinks'
 gem 'jquery-timepicker-rails'
-
+gem 'jquery-ui-rails'

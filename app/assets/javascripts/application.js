@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require jquery.timepicker.js
 //= require readable/loader
 
 $(function() {
   $('#tp1').timepicker({timeFormat: 'G:i'});
+  $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
 });
