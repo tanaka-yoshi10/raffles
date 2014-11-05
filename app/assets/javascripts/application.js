@@ -18,6 +18,6 @@
 //= require readable/loader
 
 $(function() {
-  $('#tp1').timepicker({timeFormat: 'G:i'});
+  $('.timepicker').timepicker({timeFormat: 'G:i'});
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
 });

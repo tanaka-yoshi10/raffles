@@ -17,6 +17,17 @@ class Task < ActiveRecord::Base
     where("? <= start_at and start_at <= ?", date.beginning_of_month, date.end_of_month).order(:start_at)
   end
 
+  def self.prepare_params(params)
+    params[:start_at] = Time.parse(params[:date] + " " + params[:starttime])
+    params[:end_at]   = Time.parse(params[:date] + " " + params[:endtime])
+
+    params.delete :date
+    params.delete :starttime
+    params.delete :endtime
+
+    params
+  end
+
   def self.to_csv
     header = ['日付','開始','終了','作業名', 'プロジェクトコード', '作業時間']
     CSV.generate(row_sep: "\r\n") do |csv|
