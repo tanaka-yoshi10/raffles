@@ -13,6 +13,11 @@ group :development, :test do
   gem 'guard-rspec'
 end
 
+group :development do
+  gem "better_errors"
+  gem 'binding_of_caller'
+end
+
 # for heroku
 group :production do
   gem 'pg'
