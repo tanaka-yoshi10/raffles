@@ -15,7 +15,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Report</a>
+      <%= form_tag :report_by_day, method: :get do %>
+        <input id="e1" name="e1">
+        <%= submit_tag "表示" %><%= submit_tag "csv" %>
+      <% end %>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right">
