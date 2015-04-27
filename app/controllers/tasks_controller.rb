@@ -62,10 +62,11 @@ class TasksController < ApplicationController
   end
 
   def report_by_day
-    if params[:day].blank?
-      @tasks = Task.by_month(Time.new(params[:year],params[:month]))
+    if params[:range].blank?
+      @tasks = Task.all
     else
-      @tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
+      #@tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
+      @tasks = Task.by_daterange(params[:range])
     end
 
     if params[:commit] == "csv"
