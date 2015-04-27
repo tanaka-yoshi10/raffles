@@ -17,8 +17,11 @@
 //= require turbolinks
 //= require jquery.timepicker.js
 //= require readable/loader
+//= require moment
+//= require daterangepicker
 
 $(function() {
   $('.timepicker').timepicker({timeFormat: 'G:i'});
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+  $("#e1").daterangepicker();
 });

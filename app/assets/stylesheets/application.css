@@ -15,4 +15,5 @@
  *= require readable/loader
  *= require jquery.timepicker.css
  *= require jquery-ui
+ *= require daterangepicker-bs3
  */
