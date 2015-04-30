@@ -67,6 +67,7 @@ class TasksController < ApplicationController
     else
       #@tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
       @tasks = Task.by_daterange(params[:range])
+      @daterange = params[:range]
     end
 
     if params[:commit] == "csv"
