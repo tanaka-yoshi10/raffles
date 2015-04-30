@@ -23,5 +23,13 @@
 $(function() {
   $('.timepicker').timepicker({timeFormat: 'G:i'});
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
-  $("#e1").daterangepicker();
+  $("#e1").daterangepicker({
+      ranges: {
+          'Today': [moment().startOf('day'), moment().add(1, 'days').startOf('day')],
+          'Yesterday': [moment().subtract(1, 'days').startOf('day'), moment().startOf('day')],
+          'This month': [moment().startOf('month'), moment().endOf('month')],
+          'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+      },
+      format:'YYYY/MM/DD'
+  });
 });
