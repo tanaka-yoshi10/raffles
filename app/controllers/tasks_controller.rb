@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
+    @task = Task.new
     @tasks = Task.order(:start_at)
   end
 
@@ -62,6 +63,7 @@ class TasksController < ApplicationController
   end
 
   def report_by_day
+    @task = Task.new
     if params[:range].blank?
       @tasks = Task.all
     else
