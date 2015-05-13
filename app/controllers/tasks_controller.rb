@@ -8,6 +8,15 @@ class TasksController < ApplicationController
     @tasks = Task.order(:start_at)
   end
 
+  def import
+    if params[:csv_file].blank?
+      redirect_to(tasks_url, alert: 'インポートするCSVファイルを選択してください')
+    else
+      num = Task.import(params[:csv_file])
+      redirect_to(tasks_url, notice: "#{num.to_s}件のユーザー情報を追加 / 更新しました")
+    end
+  end
+
   # GET /tasks/1
   # GET /tasks/1.json
   def show

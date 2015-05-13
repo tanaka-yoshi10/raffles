@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    collection do
+      post :import
+    end
+  end
   resources :projects
 
   get 'report_by_day' => 'tasks#report_by_day'
