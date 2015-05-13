@@ -37,7 +37,7 @@ class Task < ActiveRecord::Base
 
   # CSVファイルの内容をDBに登録する
   def self.import(file)
-    CSV.open(file.path, "r").each do |d|
+    CSV.open(file.path, "r", :headers => :first_row).each do |d|
       project = Project.where(code: d[3].strip)[0]
       start_at = Time.parse(d[0] + " " + d[1])
       end_at =  Time.parse(d[0] + " " + d[2])
