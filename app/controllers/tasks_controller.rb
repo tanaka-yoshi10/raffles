@@ -8,7 +8,6 @@ class TasksController < ApplicationController
     if params[:range].blank?
       @tasks = Task.all
     else
-      #@tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
       @tasks = Task.by_daterange(params[:range])
       @daterange = params[:range]
     end
