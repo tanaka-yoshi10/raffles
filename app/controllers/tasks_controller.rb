@@ -6,11 +6,11 @@ class TasksController < ApplicationController
   def index
     @task = Task.new
     if params[:range].blank?
-      @tasks = Task.all
+      @daterange = Date.today.beginning_of_month.strftime('%Y/%m/%d') + ' - ' + Date.today.end_of_month.strftime('%Y/%m/%d')
     else
-      @tasks = Task.by_daterange(params[:range])
       @daterange = params[:range]
     end
+    @tasks = Task.by_daterange(@daterange)
 
     if params[:commit] == "csv"
       generated_csv = @tasks.to_csv
