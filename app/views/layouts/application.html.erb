@@ -15,8 +15,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= form_tag :report_by_day, method: :get do %>
-        <input id="e1" name="range" value="<%= @daterange %>">
+      <%= form_tag :tasks, method: :get do %>
+        <input id="e1" name="range" value="<%= @date %>">
         <%= submit_tag "表示" %><%= submit_tag "csv" %>
       <% end %>
     </div>

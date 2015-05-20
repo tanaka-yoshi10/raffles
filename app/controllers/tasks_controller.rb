@@ -5,7 +5,25 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @task = Task.new
-    @tasks = Task.order(:start_at)
+    if params[:range].blank?
+      @tasks = Task.all
+    else
+      #@tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
+      @tasks = Task.by_daterange(params[:range])
+      @daterange = params[:range]
+    end
+
+    if params[:commit] == "csv"
+      generated_csv = @tasks.to_csv
+      send_data generated_csv.encode(Encoding::CP932, invalid: :replace, undef: :replace),
+                filename: 'tasks.csv',
+                type: 'text/csv; charset=shift_jis'
+
+      return
+    end
+
+    @report = @tasks.inject(Hash.new(0)) {|r, task| r[task.project] += task.time_hour; r}
+    render :index
   end
 
   def import
@@ -70,30 +88,6 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def report_by_day
-    @task = Task.new
-    if params[:range].blank?
-      @tasks = Task.all
-    else
-      #@tasks = Task.by_start_date(Time.new(params[:year],params[:month],params[:day]))
-      @tasks = Task.by_daterange(params[:range])
-      @daterange = params[:range]
-    end
-
-    if params[:commit] == "csv"
-      generated_csv = @tasks.to_csv
-      send_data generated_csv.encode(Encoding::CP932, invalid: :replace, undef: :replace),
-        filename: 'tasks.csv',
-        type: 'text/csv; charset=shift_jis'
-
-      return
-    end
-
-    @report = @tasks.inject(Hash.new(0)) {|r, task| r[task.project] += task.time_hour; r}
-    render :index
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
