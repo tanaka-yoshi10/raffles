@@ -25,10 +25,12 @@ $(function() {
   $( ".datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
   $("#e1").daterangepicker({
       ranges: {
-          'Today': [moment().startOf('day'), moment().add(1, 'days').startOf('day')],
-          'Yesterday': [moment().subtract(1, 'days').startOf('day'), moment().startOf('day')],
           'This month': [moment().startOf('month'), moment().endOf('month')],
           'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+          'This week': [moment().startOf('week'), moment().endOf('week')],
+          'Last week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')],
+          'Today': [moment().startOf('day'), moment().add(1, 'days').startOf('day')],
+          'Yesterday': [moment().subtract(1, 'days').startOf('day'), moment().startOf('day')],
       },
       format:'YYYY/MM/DD'
   });
