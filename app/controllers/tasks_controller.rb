@@ -30,7 +30,7 @@ class TasksController < ApplicationController
       redirect_to(tasks_url, alert: 'インポートするCSVファイルを選択してください')
     else
       num = Task.import(params[:csv_file])
-      redirect_to(tasks_url, notice: "#{num.to_s}件のユーザー情報を追加 / 更新しました")
+      redirect_to(tasks_url, notice: "#{num.to_s} tasks added or updated")
     end
   end
 

@@ -26,7 +26,7 @@ class Task < ActiveRecord::Base
   end
 
   def self.to_csv
-    header = ['日付','開始','終了','作業名', 'プロジェクトコード', '作業時間']
+    header = ['date','start','end','task_name', 'code', 'time']
     CSV.generate(row_sep: "\r\n") do |csv|
       csv << header
       all.each do |task|
@@ -35,7 +35,6 @@ class Task < ActiveRecord::Base
     end
   end
 
-  # CSVファイルの内容をDBに登録する
   def self.import(file)
     CSV.open(file.path, "r", :headers => :first_row).each do |d|
       project = Project.where(code: d[4].strip)[0]
