@@ -21,7 +21,7 @@
         <td><input type="text" name="task[starttime]" class="input-small timepicker"/></td>
         <td><input type="text" name="task[endtime]" class="input-small timepicker"/></td>
         <td></td>
-        <td><%= f.collection_select(:project_id, Project.order(:category, :code).all, :id, :code_and_name) %></td>
+        <td><%= projects_select_tag f %></td>
         <td><%= f.submit(:class => 'btn') %></td>
       <% end %>
     </tr>
