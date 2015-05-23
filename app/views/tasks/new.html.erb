@@ -2,4 +2,13 @@
 
 <%= render 'form' %>
 
+<div>
+  <%= form_tag(import_tasks_path, :method => :post, multipart: true) do %>
+    <div class="form-group">
+      <%= file_field_tag :csv_file %>
+    </div>
+    <%= submit_tag "CSV Import", :class => "btn btn-primary" %>
+  <% end %>
+</div>
+
 <%= link_to 'Back', tasks_path %>
