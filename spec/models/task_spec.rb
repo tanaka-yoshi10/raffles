@@ -18,7 +18,10 @@ describe Task do
     task3 = Task.create(
       start_at: Time.new(2014,10,9,10,10,10),
       end_at: Time.new(2014,10,10,10,10,20))
+    task4 = Task.create(
+      start_at: Time.new(2014,10,11,10,10,10),
+      end_at: Time.new(2014,10,11,10,10,20))
 
-    expect(Task.by_start_date(Time.new(2014,10,10))).to eq([task1, task2])
+    expect(Task.by_daterange("2014/10/10 - 2014/10/11")).to eq([task1, task2])
   end
 end
