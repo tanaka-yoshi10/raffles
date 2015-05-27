@@ -1,13 +1,36 @@
 class Task < ActiveRecord::Base
   belongs_to :project
-  validates :start_at, presence: true
-  validates :end_at, presence: true
   validates :name, presence: true
+  validates :date, presence: true
+  validates :starttime, presence: true
+  validates :endtime, presence: true
+  attr_writer :date, :starttime, :endtime
+
+  before_validation :set_date
 
   scope :between, ->(range) {
     from , to = range.split(' - ')
     where("? <= start_at and start_at <= ?", Time.parse(from), Time.parse(to)).order(:start_at)
   }
+
+  def date
+    @date || self.start_at.strftime('%Y-%m-%d') if self.start_at.present?
+  end
+
+  def starttime
+    @starttime || self.start_at.strftime('%H:%M') if self.start_at.present?
+  end
+
+  def endtime
+    @endtime || self.end_at.strftime('%H:%M') if self.end_at.present?
+  end
+
+  def set_date
+    if @date && @starttime && @endtime
+      self.start_at = Time.parse(@date + " " + @starttime)
+      self.end_at   = Time.parse(@date + " " + @endtime)
+    end
+  end
   
   def time_second
     end_at - start_at
@@ -15,17 +38,6 @@ class Task < ActiveRecord::Base
 
   def time_hour
     (time_second / 3600).round(1)
-  end
-
-  def self.prepare_params(params)
-    params[:start_at] = Time.parse(params[:date] + " " + params[:starttime])
-    params[:end_at]   = Time.parse(params[:date] + " " + params[:endtime])
-
-    params.delete :date
-    params.delete :starttime
-    params.delete :endtime
-
-    params
   end
 
   def self.to_csv

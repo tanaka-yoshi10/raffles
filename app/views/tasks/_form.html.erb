@@ -16,16 +16,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <label for="task_date">Date</label><br>
-    <input id="task_date" type="text" name="task[date]" class="datepicker"/>
+    <%= f.label :date %><br>
+    <%= f.text_field :date, class: 'datepicker' %>
   </div>
   <div class="field">
-    <%= f.label :start_at %><br>
-    <input id="task_start_at" type="text" name="task[starttime]" class="input-small timepicker"/>
+    <%= f.label :starttime %><br>
+    <%= f.text_field :starttime, class: 'timepicker' %>
   </div>
   <div class="field">
-    <%= f.label :end_at %><br>
-    <input id="task_end_at" type="text" name="task[endtime]" class="input-small timepicker"/>
+    <%= f.label :endtime %><br>
+    <%= f.text_field :endtime, class: 'timepicker' %>
   </div>
   <div class="field">
     <%= f.label :project_id %><br>
