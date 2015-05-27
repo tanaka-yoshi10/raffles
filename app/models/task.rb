@@ -1,5 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :project
+  validates :start_at, presence: true
+  validates :end_at, presence: true
+  validates :name, presence: true
 
   scope :between, ->(range) {
     from , to = range.split(' - ')
