@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe TasksController, :type => :controller do
 
   let(:valid_attributes) {
-    {name: "aaaaa"}
+    {name: "aaaaa", start_at: '2015-05-25 17:00:00 GMT', end_at: '2015-5-25 18:00:00 GMT'}
   }
 
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all tasks as @tasks" do
+    it "assigns tasks of this month as @tasks" do
       task = Task.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:tasks)).to eq([task])
