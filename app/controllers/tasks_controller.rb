@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     else
       @daterange = params[:range]
     end
-    @tasks = Task.by_daterange(@daterange)
+    @tasks = Task.between(@daterange)
 
     if params[:commit] == "csv"
       generated_csv = @tasks.to_csv

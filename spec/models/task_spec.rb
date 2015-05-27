@@ -22,6 +22,6 @@ describe Task do
       start_at: Time.new(2014,10,11,10,10,10),
       end_at: Time.new(2014,10,11,10,10,20))
 
-    expect(Task.by_daterange("2014/10/10 - 2014/10/11")).to eq([task1, task2])
+    expect(Task.between("2014/10/10 - 2014/10/11")).to eq([task1, task2])
   end
 end

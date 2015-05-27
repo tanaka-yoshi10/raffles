@@ -1,5 +1,10 @@
 class Task < ActiveRecord::Base
   belongs_to :project
+
+  scope :between, ->(range) {
+    from , to = range.split(' - ')
+    where("? <= start_at and start_at <= ?", Time.parse(from), Time.parse(to)).order(:start_at)
+  }
   
   def time_second
     end_at - start_at
@@ -7,11 +12,6 @@ class Task < ActiveRecord::Base
 
   def time_hour
     (time_second / 3600).round(1)
-  end
-
-  def self.by_daterange(range)
-    from , to = range.split(' - ')
-    where("? <= start_at and start_at <= ?", Time.parse(from), Time.parse(to)).order(:start_at)
   end
 
   def self.prepare_params(params)
