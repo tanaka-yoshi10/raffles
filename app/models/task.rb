@@ -1,3 +1,6 @@
+require 'bigdecimal'
+require 'bigdecimal/util'
+
 class Task < ActiveRecord::Base
   belongs_to :project
   validates :name, presence: true
@@ -37,7 +40,7 @@ class Task < ActiveRecord::Base
   end
 
   def time_hour
-    (time_second / 3600).round(1)
+    (time_second / 3600.0).to_d.floor(1)
   end
 
   def self.to_csv
@@ -45,7 +48,7 @@ class Task < ActiveRecord::Base
     CSV.generate(row_sep: "\r\n") do |csv|
       csv << header
       all.each do |task|
-       csv << [task.start_at.to_s(:date), task.start_at.to_s(:time), task.end_at.to_s(:time), task.name, task.project.code, task.time_second / 60 ]
+        csv << [task.start_at.to_s(:date), task.start_at.to_s(:time), task.end_at.to_s(:time), task.name, task.project.code, task.time_hour ]
       end
     end
   end
