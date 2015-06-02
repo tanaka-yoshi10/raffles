@@ -55,7 +55,11 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
+        if params[:create_and_continue]
+          format.html { redirect_to new_task_url, notice: 'Task was successfully created.' }
+        else
+          format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
+        end
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
