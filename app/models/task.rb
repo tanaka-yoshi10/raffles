@@ -29,7 +29,7 @@ class Task < ActiveRecord::Base
   end
 
   def set_date
-    if @date && @starttime && @endtime
+    if @date.present? && @starttime.present? && @endtime.present?
       self.start_at = Time.parse(@date + " " + @starttime)
       self.end_at   = Time.parse(@date + " " + @endtime)
     end
