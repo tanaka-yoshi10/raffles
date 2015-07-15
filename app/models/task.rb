@@ -3,6 +3,7 @@ require 'bigdecimal/util'
 
 class Task < ActiveRecord::Base
   belongs_to :project
+  belongs_to :user
   validates :name, presence: true
   validates :date, presence: true
   validates :starttime, presence: true
