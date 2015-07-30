@@ -14,18 +14,6 @@
   </thead>
 
   <tbody>
-    <tr>
-      <%= form_for(@task, :html => {:class => "form-horizontal", :role=>"form"}) do |f| %>
-        <td><%= f.text_field :name %></td>
-        <td><input type="text" name="task[date]" class="datepicker"/></td>
-        <td><input type="text" name="task[starttime]" class="input-small timepicker"/></td>
-        <td><input type="text" name="task[endtime]" class="input-small timepicker"/></td>
-        <td></td>
-        <td><%= projects_select_tag f %></td>
-        <td><%= f.submit(:class => 'btn') %></td>
-      <% end %>
-    </tr>
-
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task %></td>
