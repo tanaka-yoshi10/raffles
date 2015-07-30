@@ -54,3 +54,6 @@ gem 'jquery-timepicker-rails'
 gem 'jquery-ui-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
+
+gem 'kaminari'
+gem 'kaminari-bootstrap'

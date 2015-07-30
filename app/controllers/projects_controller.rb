@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
+  PER = 10
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order(:category, :code)
+    @projects = Project.page(params[:page]).per(PER).order(:category, :code)
   end
 
   # GET /projects/1

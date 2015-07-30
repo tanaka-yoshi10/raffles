@@ -97,6 +97,12 @@ GEM
     jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
     json (1.8.1)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     launchy (2.3.0)
       addressable (~> 2.3)
     less (2.5.1)
@@ -251,6 +257,8 @@ DEPENDENCIES
   jquery-timepicker-rails
   jquery-turbolinks
   jquery-ui-rails
+  kaminari
+  kaminari-bootstrap
   launchy (~> 2.3.0)
   momentjs-rails
   pg
