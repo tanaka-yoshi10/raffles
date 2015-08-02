@@ -21,6 +21,10 @@
     <%= f.label :category, class: 'control-label' %>
     <%= f.text_field :category, class: 'form-control' %>
   </div>
+  <div class="field form-group">
+    <%= f.label :completed, class: 'control-label' %>
+    <%= f.check_box :completed, class: 'form-control' %>
+  </div>
 
   <div class="actions">
     <%= f.submit :class => 'btn-primary' %>
