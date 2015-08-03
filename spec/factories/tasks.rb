@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :task do
-    name "MyString"
-    start_at "2014-10-11 00:00:19"
-    end_at "2014-10-11 00:00:19"
+    sequence(:name) { |i| "task#{i}" }
+    start_at { rand(1..30).days.from_now}
+    end_at { start_at + rand(1..30).hours }
     project nil
   end
 end
