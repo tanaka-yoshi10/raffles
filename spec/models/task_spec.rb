@@ -24,9 +24,13 @@ describe Task do
       end_at: Time.new(2014,10,10,10,10,20))
     task4 = Task.create(
       name: "task4",
-      start_at: Time.new(2014,10,11,10,10,10),
-      end_at: Time.new(2014,10,11,10,10,20))
+      start_at: Time.new(2014,10,11,23,59,59),
+      end_at: Time.new(2014,10,12,10,10,20))
+    task5 = Task.create(
+      name: "task5",
+      start_at: Time.new(2014,10,12,0,0,0),
+      end_at: Time.new(2014,10,12,10,10,20))
 
-    expect(Task.between("2014/10/10 - 2014/10/11")).to eq([task1, task2])
+    expect(Task.between("2014/10/10 - 2014/10/11")).to eq([task1, task2, task4])
   end
 end

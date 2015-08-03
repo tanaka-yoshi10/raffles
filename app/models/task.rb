@@ -14,7 +14,7 @@ class Task < ActiveRecord::Base
 
   scope :between, ->(range) {
     from , to = range.split(' - ')
-    where("? <= start_at and start_at <= ?", Time.parse(from), Time.parse(to)).order(:start_at)
+    where("? <= start_at and start_at < ?", Time.parse(from), Time.parse(to) + 1.day).order(:start_at)
   }
 
   def date
