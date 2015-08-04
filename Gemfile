@@ -58,3 +58,4 @@ gem 'bootstrap-daterangepicker-rails'
 
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'bullet', :group => :development
