@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :project do
-    name "MyString"
+    sequence(:name) { |i| "project#{i}" }
+    sequence(:code) { |i| "code#{i}" }
+    sequence(:category) { |i| "category#{i}" }
   end
 end
